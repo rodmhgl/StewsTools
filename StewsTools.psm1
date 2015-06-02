@@ -956,3 +956,5 @@ function Add-STSignature {
     Set-AuthenticodeSignature -FilePath $Script -Certificate $Cert -TimestampServer $TimeStampServer
 
 }
+
+Export-ModuleMember -Function *-ST*
