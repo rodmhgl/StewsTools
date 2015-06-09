@@ -87,7 +87,7 @@ function Get-STUserLastLogonInfo {
     Process {
         foreach ($User in $UserName) {
             get-aduser -Properties LastLogonDate, Description, SamAccountName -Identity $User |
-            select SamAccountName, LastLogonDate, Description
+            Select-Object SamAccountName, LastLogonDate, Description
         }
     }
     End {}
@@ -286,7 +286,7 @@ function Get-STComputerLastLogonInfo {
     Process {
         foreach ($computer in $ComputerName) {
             get-adcomputer -Properties LastLogonDate, Description, SamAccountName -Identity $computer |
-            select SamAccountName, LastLogonDate, Description
+            Select-Object SamAccountName, LastLogonDate, Description
         }
     }
     End {}
@@ -950,7 +950,7 @@ function Add-STSignature {
         [Parameter(Mandatory=$true)]
         [string[]]$Script,
         [string]$TimeStampServer='http://timestamp.comodoca.com/authenticode', 
-        [System.Security.Cryptography.X509Certificates.X509Certificate2]$Cert = (dir cert:currentuser\my\ -CodeSigningCert)
+        [System.Security.Cryptography.X509Certificates.X509Certificate2]$Cert = (Get-ChildItem cert:currentuser\my\ -CodeSigningCert)
     )
 
     Set-AuthenticodeSignature -FilePath $Script -Certificate $Cert -TimestampServer $TimeStampServer
