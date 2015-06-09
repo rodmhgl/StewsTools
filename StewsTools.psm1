@@ -27,7 +27,7 @@ function Restart-STService {
                    )]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [Alias("server")] 
+        [Alias('server')] 
         [string[]]$ComputerName='localhost',
 
         [Parameter(Mandatory=$true,
@@ -40,14 +40,14 @@ function Restart-STService {
     )
 
     Begin {
-        $VerbosePreference = "Continue"    
+        $VerbosePreference = 'Continue'    
         Write-Verbose -Message "Restarting $ServiceName on $ComputerName"
     }
     
     Process {
         foreach ($computer in $computerName) { 
             foreach ($service in $ServiceName) {
-                if ($pscmdlet.ShouldProcess("Restarted $service on $computer", "Restart $service on '$computer'?", "Restarting Service")) {
+                if ($pscmdlet.ShouldProcess("Restarted $service on $computer", "Restart $service on '$computer'?", 'Restarting Service')) {
                     Try { $service = Get-Service -ComputerName $computer -Name $service -ErrorAction Stop }
                     Catch { 
                             $ErrorMessage = $_.Exception.Message
@@ -116,7 +116,7 @@ function Get-STIsUserDisabled {
                    ParameterSetName='Default')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [Alias("UserName")] 
+        [Alias('UserName')] 
         [string[]]$SAMAccountName
     )
 
@@ -174,7 +174,7 @@ function Get-STRealName {
                    ParameterSetName='Default')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [Alias("UserName")] 
+        [Alias('UserName')] 
         [string[]]$SAMAccountName
     )
     Begin { Write-Verbose -Message "Searching for $SAMAccountName" }
@@ -329,13 +329,13 @@ Function Get-STIPInfo {
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="NoCredential",
+            ParameterSetName='NoCredential',
             Position=0
         )]
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="Credential",
+            ParameterSetName='Credential',
             Position=0
         )]
         [ValidateNotNull()]
@@ -345,15 +345,15 @@ Function Get-STIPInfo {
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="Credential"
+            ParameterSetName='Credential'
         )]
         [System.Management.Automation.PSCredential]$Credential
     )
 
     Begin {
-        $Activity = "Getting IP Information"
-        $Class = "Win32_NetworkAdapterConfiguration"
-        $Error = "Unable to Get IP Information"
+        $Activity = 'Getting IP Information'
+        $Class = 'Win32_NetworkAdapterConfiguration'
+        $Error = 'Unable to Get IP Information'
     }
 
     Process {
@@ -396,13 +396,13 @@ Function Get-STOperatingSystemInfo {
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="NoCredential",
+            ParameterSetName='NoCredential',
             Position=0
         )]
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="Credential",
+            ParameterSetName='Credential',
             Position=0
         )]
         [ValidateNotNull()]
@@ -412,15 +412,15 @@ Function Get-STOperatingSystemInfo {
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="Credential"
+            ParameterSetName='Credential'
         )]
         [System.Management.Automation.PSCredential]$Credential
     )
 
     Begin {
-        $Activity = "Getting OS Information"
-        $Class = "Win32_OperatingSystem"
-        $Error = "Unable to Get OS Information"
+        $Activity = 'Getting OS Information'
+        $Class = 'Win32_OperatingSystem'
+        $Error = 'Unable to Get OS Information'
     }
 
     Process {
@@ -465,13 +465,13 @@ Function Get-STComputerInfo {
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="NoCredential",
+            ParameterSetName='NoCredential',
             Position=0
         )]
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="Credential",
+            ParameterSetName='Credential',
             Position=0
         )]
         [ValidateNotNull()]
@@ -481,15 +481,15 @@ Function Get-STComputerInfo {
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="Credential"
+            ParameterSetName='Credential'
         )]
         [System.Management.Automation.PSCredential]$Credential
     )
 
     Begin {
-        $Activity = "Getting Computer Information"
-        $Class = "Win32_ComputerSystem"
-        $Error = "Unable to Get Computer Information"
+        $Activity = 'Getting Computer Information'
+        $Class = 'Win32_ComputerSystem'
+        $Error = 'Unable to Get Computer Information'
     }
 
     Process {
@@ -521,7 +521,7 @@ Function Get-STComputerInfo {
                     'UserName' = $null
                     'SystemType' = "$_"
                     'PrimaryOwnerName' = "$_"
-                    'TotalPhysicalMemory' = "0"
+                    'TotalPhysicalMemory' = '0'
                 }
             $CI = New-Object -TypeName PSObject -Property $props   
             } # Catch 
@@ -536,13 +536,13 @@ Function Get-STBIOSInfo {
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="NoCredential",
+            ParameterSetName='NoCredential',
             Position=0
         )]
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="Credential",
+            ParameterSetName='Credential',
             Position=0
         )]
         [ValidateNotNull()]
@@ -552,15 +552,15 @@ Function Get-STBIOSInfo {
         [Parameter(
             Mandatory=$true, 
             ValueFromPipeline=$true,
-            ParameterSetName="Credential"
+            ParameterSetName='Credential'
         )]
         [System.Management.Automation.PSCredential]$Credential
     )
 
     Begin {
-        $Activity = "Getting BIOS Information"
-        $Class = "Win32_BIOS"
-        $Error = "Unable to Get BIOS Information"
+        $Activity = 'Getting BIOS Information'
+        $Class = 'Win32_BIOS'
+        $Error = 'Unable to Get BIOS Information'
     }
 
     Process {
@@ -626,7 +626,7 @@ function Get-STServerInfo {
                 $productnumber = $($cs | Select-Object -ExpandProperty oemstringarray)
                 $productnumber = $productnumber[-1].replace('Product ID: ','')
             } else {
-                $productnumber = "Virtual Machine"
+                $productnumber = 'Virtual Machine'
             }
             $props = @{
                 'ComputerName'=$ComputerName[0]
@@ -696,7 +696,7 @@ Function New-STGroup {
                     ParameterSetName='Scope',
                     Position=0
         )]  # ParameterSet Scope - Scope
-        [Alias("GroupScope")] 
+        [Alias('GroupScope')] 
         [Microsoft.ActiveDirectory.Management.ADGroupScope[]]$Scope='DomainLocal',
 
         [Parameter(Mandatory=$true,
@@ -708,12 +708,12 @@ Function New-STGroup {
         [Parameter(Mandatory=$true,
                     ValueFromPipeline=$true,
                     ValueFromPipelineByPropertyName=$true,
-                    ParameterSetName="NoScope",
+                    ParameterSetName='NoScope',
                     Position=1
         )] # ParameterSet NoScope - Name
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [Alias("SAMAccountName")]
+        [Alias('SAMAccountName')]
         [String[]]$Name,
 
         [Parameter(Mandatory=$true,
@@ -725,7 +725,7 @@ Function New-STGroup {
         [Parameter(Mandatory=$true,
                     ValueFromPipeline=$true,
                     ValueFromPipelineByPropertyName=$true, 
-                    ParameterSetName="NoScope",
+                    ParameterSetName='NoScope',
                     Position=2
         )] # ParameterSet NoScope - Description
         [ValidateNotNull()]
@@ -833,18 +833,18 @@ function Get-STProductKey {
     [cmdletbinding()]
     Param (
         [parameter(ValueFromPipeLine=$True,ValueFromPipeLineByPropertyName=$True)]
-        [Alias("CN","__Server","IPAddress","Server")]
+        [Alias('CN','__Server','IPAddress','Server')]
         [string[]]$Computername = $Env:Computername
     )
     Begin {   
-        $map="BCDFGHJKMPQRTVWXY2346789" 
+        $map='BCDFGHJKMPQRTVWXY2346789' 
     }
     Process {
         ForEach ($Computer in $Computername) {
-            Write-Verbose ("{0}: Checking network availability" -f $Computer)
+            Write-Verbose ('{0}: Checking network availability' -f $Computer)
             If (Test-Connection -ComputerName $Computer -Count 1 -Quiet) {
                 Try {
-                    Write-Verbose ("{0}: Retrieving WMI OS information" -f $Computer)
+                    Write-Verbose ('{0}: Retrieving WMI OS information' -f $Computer)
                     $OS = Get-WmiObject -ComputerName $Computer Win32_OperatingSystem -ErrorAction Stop                
                 } Catch {
                     $OS = New-Object PSObject -Property @{
@@ -853,15 +853,15 @@ function Get-STProductKey {
                     }
                 }
                 Try {
-                    Write-Verbose ("{0}: Attempting remote registry access" -f $Computer)
+                    Write-Verbose ('{0}: Attempting remote registry access' -f $Computer)
                     $remoteReg = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]::LocalMachine,$Computer)
                     If ($OS.OSArchitecture -eq '64-bit') {
-                        $value = $remoteReg.OpenSubKey("SOFTWARE\Microsoft\Windows NT\CurrentVersion").GetValue('DigitalProductId4')[0x34..0x42]
+                        $value = $remoteReg.OpenSubKey('SOFTWARE\Microsoft\Windows NT\CurrentVersion').GetValue('DigitalProductId4')[0x34..0x42]
                     } Else {                        
-                        $value = $remoteReg.OpenSubKey("SOFTWARE\Microsoft\Windows NT\CurrentVersion").GetValue('DigitalProductId')[0x34..0x42]
+                        $value = $remoteReg.OpenSubKey('SOFTWARE\Microsoft\Windows NT\CurrentVersion').GetValue('DigitalProductId')[0x34..0x42]
                     }
-                    $ProductKey = ""  
-                    Write-Verbose ("{0}: Translating data into product key" -f $Computer)
+                    $ProductKey = ''  
+                    Write-Verbose ('{0}: Translating data into product key' -f $Computer)
                     for ($i = 24; $i -ge 0; $i--) { 
                       $r = 0 
                       for ($j = 14; $j -ge 0; $j--) { 
@@ -871,7 +871,7 @@ function Get-STProductKey {
                       } 
                       $ProductKey = $map[$r] + $ProductKey 
                       if (($i % 5) -eq 0 -and $i -ne 0) { 
-                        $ProductKey = "-" + $ProductKey 
+                        $ProductKey = '-' + $ProductKey 
                       } 
                     }
                 } Catch {
